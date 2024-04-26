@@ -1,0 +1,233 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=xui
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=2
+NumberOfModules=1
+Version=12.8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.	
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private FirstNum As EditText
+	Private Seven As Button
+	Private Eight As Button
+	Private Nine As Button
+	Private Divide As Button
+	Private Multiply As Button
+	Private Six As Button
+	Private Five As Button
+	Private Four As Button
+	Private One As Button
+	Private Two As Button
+	Private Three As Button
+	Private Plus As Button
+	Private Equals As Button
+	Private Dot As Button
+	Private Zero As Button
+	Private C As Button
+	
+	Dim CheckOperator As String
+	Dim num1 As Int
+	Dim OperationClicked As Boolean = False
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+End Sub	
+
+
+Sub Compute
+	Select Case CheckOperator
+		Case "divide"
+			FirstNum.Text = num1 / FirstNum.Text
+			
+		Case "multiply"
+			FirstNum.Text = num1 * FirstNum.Text
+			
+		Case "Add"
+			FirstNum.Text = num1 + FirstNum.Text
+		Case "minus"
+			FirstNum.Text = num1 - FirstNum.Text
+	End Select
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+Private Sub C_Click
+	FirstNum.Text = ""
+End Sub
+
+Private Sub Zero_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "0"
+	OperationClicked = False
+End Sub
+
+Private Sub Dot_Click
+	FirstNum.Text = FirstNum.Text & "."
+End Sub
+
+Private Sub Equals_Click
+	Compute
+End Sub
+
+Private Sub Plus_Click
+	Try
+		OperationClicked = True
+		CheckOperator = "Add"
+		num1 = FirstNum.Text
+	Catch
+		xui.MsgboxAsync("Number invalid","INVALID")
+	End Try
+End Sub
+
+Private Sub Three_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "3"
+	OperationClicked = False
+End Sub
+
+Private Sub Two_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "2"
+	OperationClicked = False
+End Sub
+
+Private Sub One_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "1"
+	OperationClicked = False
+End Sub
+
+Private Sub Four_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "4"
+	OperationClicked = False
+End Sub
+
+Private Sub Five_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "5"
+	OperationClicked = False
+End Sub
+
+Private Sub Six_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "6"
+	OperationClicked = False
+End Sub
+
+Private Sub Multiply_Click
+	Try
+		OperationClicked = True
+		CheckOperator = "multiply"
+		num1 = FirstNum.Text
+	Catch
+		xui.MsgboxAsync("Number invalid","INVALID")
+	End Try
+End Sub
+
+Private Sub Divide_Click
+	Try
+		OperationClicked = True
+		CheckOperator = "divide"
+		num1 = FirstNum.Text
+	Catch
+		xui.MsgboxAsync("Number invalid","INVALID")
+	End Try
+End Sub
+
+Private Sub Nine_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "9"
+	OperationClicked = False
+End Sub
+
+Private Sub Eight_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "8"
+	OperationClicked = False
+End Sub
+
+Private Sub Seven_Click
+	If OperationClicked Then
+		FirstNum.Text = ""
+	End If
+	
+	FirstNum.Text = FirstNum.Text & "7"
+	OperationClicked = False
+End Sub
+
+Private Sub Total_Click
+	Try
+		Compute
+	Catch
+		xui.MsgboxAsync("Number invalid","INVALID")
+	End Try
+End Sub
+
+Private Sub Button2_Click
+	Try
+		OperationClicked = True
+		CheckOperator = "minus"
+		num1 = FirstNum.Text
+	Catch
+		xui.MsgboxAsync("Number invalid","INVALID")
+	End Try
+End Sub
